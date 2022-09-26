@@ -1,10 +1,8 @@
+var pa = []; //Product Array
 
-
-var prodArr = []; //Product Array
-
-document.getElementById("update_product").style.display = "none"; //Hide Update Button
-document.getElementById("success").style.display = "none"; //Hide Success Notification
-document.getElementById("error").style.display = "none"; //Hide Error Notification
+document.getElementById("update_product").style.display = "none"; 
+document.getElementById("success").style.display = "none"; 
+document.getElementById("error").style.display = "none"; 
 
 $(document).ready(function () {
   //jQuery Ready Function
@@ -15,7 +13,6 @@ $(document).ready(function () {
     var product_quantity = $("#product_quantity").val();
 
     var obj = {
-      //Making object for storing all input values
       SKU: product_sku,
       Name: product_name,
       Price: product_price,
@@ -23,7 +20,6 @@ $(document).ready(function () {
     };
 
     if (
-      //Implemention the all check requried
       obj.SKU == "" &&
       obj.Name == "" &&
       obj.Price == "" &&
@@ -65,13 +61,11 @@ $(document).ready(function () {
       document.getElementById("error").style.display = "block";
       document.getElementById("success").style.display = "none";
     } else {
-      prodArr.push(obj);
-      console.log(prodArr);
+      pa.push(obj);
+      console.log(pa);
       display();
     }
   });
-
-  //function for hide notification
   $("#close-success").click(function () {
     $("#success").hide();
   });
@@ -80,13 +74,12 @@ $(document).ready(function () {
   });
 });
 
-//Display function of table
 function display() {
   document.getElementById("success").style.display = "block";
   document.getElementById("error").style.display = "none";
   var table =
     "<table><tr><th>SKU</th><th>Name</th><th>Price</th><th>Quantity</th><th>Action</th></tr>";
-  prodArr.forEach((element) => {
+  pa.forEach((element) => {
     table +=
       '<tr id="row"><td>' +
       element.SKU +
@@ -105,24 +98,22 @@ function display() {
   table += "</table>";
   document.getElementById("product_list").innerHTML = table;
 }
-//Edit function
 function edit(val) {
   document.getElementById("add_product").style.display = "none";
   document.getElementById("update_product").style.display = "block";
 
-  for (let i = 0; i < prodArr.length; i++) {
-    if (val == prodArr[i].SKU) {
-      document.getElementById("product_sku").value = prodArr[i].SKU;
-      document.getElementById("product_name").value = prodArr[i].Name;
-      document.getElementById("product_price").value = prodArr[i].Price;
-      document.getElementById("product_quantity").value = prodArr[i].Quantity;
-      prodArr.splice(i, 1);
+  for (let i = 0; i < pa.length; i++) {
+    if (val == pa[i].SKU) {
+      document.getElementById("product_sku").value = pa[i].SKU;
+      document.getElementById("product_name").value = pa[i].Name;
+      document.getElementById("product_price").value = pa[i].Price;
+      document.getElementById("product_quantity").value = pa[i].Quantity;
+      pa.splice(i, 1);
     }
   }
 
   display();
 }
-//Function for update the product list
 function update() {
   document.getElementById("update_product").style.display = "none";
   document.getElementById("add_product").style.display = "block";
@@ -139,7 +130,6 @@ function update() {
   };
 
   if (
-    //Implemention the all check requried
     obj.SKU == "" &&
     obj.Name == "" &&
     obj.Price == "" &&
@@ -181,17 +171,16 @@ function update() {
     document.getElementById("error").style.display = "block";
     document.getElementById("success").style.display = "none";
   } else {
-    prodArr.push(obj);
-    console.log(prodArr);
+    pa.push(obj);
+    console.log(pa);
     display();
   }
 }
 
-//Function for delete the item
 function delProd(val) {
-  for (let i = 0; i < prodArr.length; i++) {
-    if (val == prodArr[i].SKU) {
-      prodArr.splice(i, 1);
+  for (let i = 0; i < pa.length; i++) {
+    if (val == pa[i].SKU) {
+      pa.splice(i, 1);
     }
   }
   display();
