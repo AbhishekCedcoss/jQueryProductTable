@@ -1,8 +1,8 @@
 var pa = []; //Product Array
 
-document.getElementById("update_product").style.display = "none"; 
-document.getElementById("success").style.display = "none"; 
-document.getElementById("error").style.display = "none"; 
+document.getElementById("update_product").style.display = "none";
+document.getElementById("success").style.display = "none";
+document.getElementById("error").style.display = "none";
 
 $(document).ready(function () {
   //jQuery Ready Function
@@ -128,53 +128,6 @@ function update() {
     Price: product_price,
     Quantity: product_quantity,
   };
-
-  if (
-    obj.SKU == "" &&
-    obj.Name == "" &&
-    obj.Price == "" &&
-    obj.Quantity == ""
-  ) {
-    $("#error").text("All field are empty.");
-    document.getElementById("error").style.display = "block";
-    document.getElementById("success").style.display = "none";
-  } else if (obj.SKU == "") {
-    $("#error").text("SKU field is empty.");
-    document.getElementById("error").style.display = "block";
-    document.getElementById("success").style.display = "none";
-  } else if (obj.Name == "") {
-    $("#error").text("Name field is empty.");
-    document.getElementById("error").style.display = "block";
-    document.getElementById("success").style.display = "none";
-  } else if (obj.Price == "") {
-    $("#error").text("Price field is empty.");
-    document.getElementById("error").style.display = "block";
-    document.getElementById("success").style.display = "none";
-  } else if (obj.Quantity == "") {
-    $("#error").text("Quantity field is empty.");
-    document.getElementById("error").style.display = "block";
-    document.getElementById("success").style.display = "none";
-  } else if (isNaN(obj.SKU)) {
-    $("#error").text("SKU field should be integer");
-    document.getElementById("error").style.display = "block";
-    document.getElementById("success").style.display = "none";
-  } else if (!isNaN(obj.Name)) {
-    $("#error").text("Name field should be string");
-    document.getElementById("error").style.display = "block";
-    document.getElementById("success").style.display = "none";
-  } else if (isNaN(obj.Price)) {
-    $("#error").text("Price field should be integer");
-    document.getElementById("error").style.display = "block";
-    document.getElementById("success").style.display = "none";
-  } else if (isNaN(obj.Quantity)) {
-    $("#error").text("Quantity field should be integer");
-    document.getElementById("error").style.display = "block";
-    document.getElementById("success").style.display = "none";
-  } else {
-    pa.push(obj);
-    console.log(pa);
-    display();
-  }
 }
 
 function delProd(val) {
